@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campground</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .campground {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 5 items per row */
+            gap: 15px;
+        }
+        .campground img, .campground video {
+            width: 100%;
+            height: 200px; /* Set equal height for all media */
+            object-fit: cover; /* Ensure proper aspect ratio */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .campground img:hover, .campground video:hover {
+            transform: scale(1.05);
+        }
+        /* Lightbox overlay */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .lightbox.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .lightbox img, .lightbox video {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .lightbox .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Campground Images and Videos</h1>
+    <section class="campground"></section>
+
+    <!-- Lightbox for zoomed-in view -->
+    <div class="lightbox" id="lightbox">
+        <span class="close" id="closeLightbox">&times;</span>
+        <img id="lightboxImage" src="" alt="Zoomed Content" style="display: none;">
+        <video id="lightboxVideo" controls style="display: none;"></video>
+    </div>
+
+    <script>
+        // List of media files (images and videos)
+        const mediaFiles = [
+            { type: "image", src: "imagesss/image 1.jpg" },
+            { type: "image", src: "imagesss/image 2.jpg" },
+            { type: "image", src: "imagesss/image 3.jpg" },
+            { type: "image", src: "imagesss/image 4.jpg" },
+            { type: "image", src: "imagesss/image 6.jpg" },
+            { type: "image", src: "imagesss/image 8.jpg" },
+            { type: "image", src: "imagesss/image 9.jpg" },
+            { type: "image", src: "imagesss/image 11.jpg" },
+            { type: "image", src: "imagesss/image 18.jpg" },
+            { type: "video", src: "imagesss/video 1.mp4" },
+            { type: "image", src: "imagesss/image 15.jpg" },
+            { type: "image", src: "imagesss/image 5.jpg" },
+            { type: "image", src: "imagesss/image 16.jpg" },
+            { type: "image", src: "images/image-7.png" },
+            { type: "image", src: "images/image-5.png" },
+            { type: "image", src: "images/image-6.png" },
+            { type: "image", src: "images/image-4.png" },
+            { type: "image", src: "images/image20.png" },
+
+            
+            
+            { type: "video", src: "imagesss/video 5.mp4" },
+            { type: "video", src: "imagesss/video 4.mp4" },
+            { type: "video", src: "imagesss/video 2.mp4" }
+
+        ];
+
+        // Get the campground section and lightbox elements
+        const campground = document.querySelector(".campground");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const lightboxVideo = document.getElementById("lightboxVideo");
+        const closeLightbox = document.getElementById("closeLightbox");
+
+        // Add each media file to the campground section
+        mediaFiles.forEach(file => {
+            if (file.type === "image") {
+                const imgElement = document.createElement("img");
+                imgElement.src = file.src;
+                imgElement.alt = "Campground Image";
+                imgElement.addEventListener("click", () => {
+                    lightboxImage.src = file.src;
+                    lightboxImage.style.display = "block";
+                    lightboxVideo.style.display = "none";
+                    lightbox.classList.add("active");
+                });
+                campground.appendChild(imgElement);
+            } else if (file.type === "video") {
+                const videoElement = document.createElement("video");
+                videoElement.src = file.src;
+                videoElement.controls = false; // Disable controls for thumbnails
+                videoElement.addEventListener("click", () => {
+                    lightboxVideo.src = file.src;
+                    lightboxVideo.style.display = "block";
+                    lightboxImage.style.display = "none";
+                    lightbox.classList.add("active");
+                });
+                campground.appendChild(videoElement);
+            }
+        });
+
+        // Close the lightbox when the close button is clicked
+        closeLightbox.addEventListener("click", () => {
+            lightbox.classList.remove("active");
+            lightboxVideo.pause(); // Pause video when lightbox is closed
+        });
+
+        // Close the lightbox when clicking outside the content
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                lightbox.classList.remove("active");
+                lightboxVideo.pause(); // Pause video when lightbox is closed
+            }
+        });
+    </script>
+</body>
+</html>

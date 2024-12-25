@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Now - Camping</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="container nav_container">
+          <a href="#" class="nav_logo">
+            <img src="" alt="" class="nav_logo_img" />
+          </a>
+          <ul class="nav_list">
+            <li class="nav_item"><a href="index.html" class="nav_link">Home</a></li>
+            <li class="nav_item"><a href="about.html" class="nav_link">About</a></li>
+            <li class="nav_item"><a href="campground.html" class="nav_link">Campground</a></li>
+            <li class="nav_item"><a href="tel:+7017782697" class="nav_link">Contact</a></li>
+            <li class="nav_item"><a href="book-now.html" class="nav_btn">Book Now</a></li>
+          </ul>
+          <span class="menu_icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="white"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </span>
+        </div>
+        <ul class="mobile_nav_list mobile_nav_toggle">
+          <li class="mobile_nav_item">
+            <a href="index.html" class="mobile_nav_link">Home</a>
+          </li>
+          <li class="mobile_nav_item">
+            <a href="about.html" class="mobile_nav_link">About</a>
+          </li>
+          <li class="mobile_nav_item">
+            <a href="campground.html" class="mobile_nav_link">Campground</a>
+          </li>
+          <li class="mobile_nav_item mobile_nav_link_last">
+            <a href="contact.html" class="mobile_nav_link">Contact</a>
+          </li>
+          <li class="mobile_nav_item">
+            <a href="book-now.html" class="mobile_nav_btn">Book Now</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header_wrapper">
+        <div class="container header_content">
+          <h4 class="header_secondary_title">Let’s Make more Memories</h4>
+          <h1 class="header_main_title">
+            Camp is more than just a word, <br />
+            it’s an experience!
+          </h1>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" style="padding: 50px 0; background-color: #f9f9f9;">
+        <div class="container" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+          <div class="booking_form_container" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 30px;">
+            <h2 class="booking_form_title" style="font-size: 2rem; color: #333; text-align: center; margin-bottom: 20px;">Booking Form</h2>
+            <form id="bookingForm">
+              <label for="name" style="display: block; font-size: 1rem; margin-bottom: 8px; color: #555;">Full Name:</label>
+              <input type="text" id="name" name="name" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; color: #333;" />
+      
+              <label for="email" style="display: block; font-size: 1rem; margin-bottom: 8px; color: #555;">Email:</label>
+              <input type="email" id="email" name="email" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; color: #333;" />
+      
+              <label for="phone" style="display: block; font-size: 1rem; margin-bottom: 8px; color: #555;">Phone Number:</label>
+              <input type="tel" id="phone" name="phone" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; color: #333;" />
+      
+              <label for="dates" style="display: block; font-size: 1rem; margin-bottom: 8px; color: #555;">Booking Dates:</label>
+              <input type="text" id="dates" name="dates" placeholder="e.g. 2024-12-20 to 2024-12-25" required
+                style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; color: #333;" />
+      
+              <button type="submit" style="width: 100%; padding: 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 1.2rem; cursor: pointer;">
+                Book Now
+              </button>
+            </form>
+            <p id="confirmationMessage" class="confirmation_message" style="font-size: 1.2rem; color: #28a745; text-align: center; margin-top: 20px;"></p>
+          </div>
+        </div>
+      </section>
+      
+      <script>
+        document.getElementById("bookingForm").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting normally
+      
+          // Collect form data
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const dates = document.getElementById("dates").value;
+      
+          // Display a confirmation message
+          const confirmationMessage = document.getElementById("confirmationMessage");
+          confirmationMessage.innerHTML = `Thank you, ${name}! Your booking for the dates ${dates} has been confirmed. We will contact you at ${email} or ${phone} shortly.`;
+      
+          // Clear the form after submission
+          document.getElementById("bookingForm").reset();
+        });
+      </script>
+      
+
+      <footer>
+        <div class="footer-container">
+          <div class="footer-content">
+            <h2 class="footer-title">Contact Us  (9839585721) </h2>
+            <div class="footer-address">
+              <span class="location-icon">📍</span>
+              <span class="location-text" id="location">Fetching your location...</span>
+            </div>
+            <div class="footer-socials">
+              <a href="#" class="social-icon">FB</a>
+              <a href="https://www.instagram.com/namami_ganges_adventure" class="social-icon">IG</a>
+  
+              <a href="#" class="social-icon">TW</a>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2024 Your Website | All Rights Reserved</p>
+          </div>
+        </div>
+      </footer>
+
+    <script>
+      document.getElementById("bookingForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Collect form data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const dates = document.getElementById("dates").value;
+
+        // Display a confirmation message
+        const confirmationMessage = document.getElementById("confirmationMessage");
+        confirmationMessage.innerHTML = `Thank you, ${name}! Your booking for the dates ${dates} has been confirmed. We will contact you at ${email} or ${phone} shortly.`;
+
+        // Clear the form after submission
+        document.getElementById("bookingForm").reset();
+      });
+    </script>
+  </body>
+</html>
